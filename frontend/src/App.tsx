@@ -1,40 +1,45 @@
-import { useState } from 'react';
-import logo from './assets/images/logo-universal.png';
+import { useEffect, useState } from 'react';
 import './App.css';
-import { Greet } from '../wailsjs/go/main/App';
+import { CreateTodo, GetAllTodos } from '../wailsjs/go/main/App';
 
 function App() {
-  const [resultText, setResultText] = useState(
-    'Ingresa tu nombre aquí debajo 👇'
-  );
-  const [name, setName] = useState('');
-  const updateName = (e: any) => setName(e.target.value);
-  const updateResultText = (result: string) => setResultText(result);
+  const [todo, setTodo] = useState('');
+  const [todos, setTodos] = useState<Array<string>>(['Primer pendiente']);
+  const updateTodo = (e: any) => setTodo(e.target.value);
 
-  function greet() {
-    Greet(name).then(updateResultText);
+  useEffect(() => {
+    GetAllTodos().then((todos) => {
+      setTodos(todos.map((t) => t.Content));
+    });
+  }, []);
+
+  function createTodo() {
+    CreateTodo(todo).then((todo) => setTodos([...todos, todo.Content]));
   }
 
   return (
     <div id="App">
-      <h2>Este es un titulo</h2>
-      <img src={logo} id="logo" alt="logo" />
-      <div id="result" className="result">
-        {resultText}
-      </div>
+      <h1>To-do List</h1>
+
       <div id="input" className="input-box">
         <input
-          id="name"
+          id="new-todo"
           className="input"
-          onChange={updateName}
+          onChange={updateTodo}
           autoComplete="off"
-          name="input"
+          name="new-todo"
           type="text"
         />
-        <button className="btn" onClick={greet}>
-          Greet
+        <button className="btn" onClick={createTodo}>
+          Add
         </button>
       </div>
+
+      <ul className="todo-list">
+        {todos.map((value, index) => {
+          return <li key={index}>{value}</li>;
+        })}
+      </ul>
     </div>
   );
 }

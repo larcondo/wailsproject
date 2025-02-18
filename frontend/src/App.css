@@ -22,6 +22,10 @@
   margin: 1.5rem auto;
 }
 
+.input-box {
+  margin: 1rem 0;
+}
+
 .input-box .btn {
   width: 60px;
   height: 30px;
@@ -57,4 +61,14 @@
 .input-box .input:focus {
   border: none;
   background-color: rgba(255, 255, 255, 1);
+}
+
+.todo-list {
+  background-color: rgba(0, 0, 0, 0.25);
+  max-width: 30ch;
+  margin: 1rem auto;
+  text-align: left;
+  border-radius: 6px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
