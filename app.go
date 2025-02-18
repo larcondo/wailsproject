@@ -64,3 +64,10 @@ func (a *App) CreateTodo(content string) TodoEntry {
 
 	return todo
 }
+
+func (a *App) DeleteTodo(ID uint) TodoEntry {
+	var todo TodoEntry
+	a.db.First(&todo, ID)
+	a.db.Delete(&todo)
+	return todo
+}

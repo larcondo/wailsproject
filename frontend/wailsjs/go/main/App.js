@@ -6,6 +6,10 @@ export function CreateTodo(arg1) {
   return window['go']['main']['App']['CreateTodo'](arg1);
 }
 
+export function DeleteTodo(arg1) {
+  return window['go']['main']['App']['DeleteTodo'](arg1);
+}
+
 export function GetAllTodos() {
   return window['go']['main']['App']['GetAllTodos']();
 }

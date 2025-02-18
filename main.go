@@ -24,6 +24,9 @@ func main() {
 	FileMenu.AddText("Minimizar", keys.CmdOrCtrl("o"), func(cd *menu.CallbackData) {
 		runtime.WindowMinimise(app.ctx)
 	})
+	FileMenu.AddText("Recargar", keys.CmdOrCtrl("r"), func(cd *menu.CallbackData) {
+		runtime.WindowReload(app.ctx)
+	})
 	FileMenu.AddSeparator()
 	FileMenu.AddText("Quit", keys.CmdOrCtrl("q"), func(cd *menu.CallbackData) {
 		runtime.Quit(app.ctx)
