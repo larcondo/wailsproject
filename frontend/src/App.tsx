@@ -3,10 +3,18 @@ import './App.css';
 import { CreateTodo, GetAllTodos, DeleteTodo } from '../wailsjs/go/main/App';
 import { main } from '../wailsjs/go/models';
 
+const PRIORITIES = [
+  { class: 'pri-info', text: 'Info' },
+  { class: 'pri-low', text: 'Baja' },
+  { class: 'pri-high', text: 'Alta' },
+];
+
 function App() {
-  const [todo, setTodo] = useState('');
+  const [text, setText] = useState('');
+  const [priority, setPriority] = useState(0);
   const [todos, setTodos] = useState<Array<main.TodoEntry>>([]);
-  const updateTodo = (e: any) => setTodo(e.target.value);
+  const updateTodo = (e: any) => setText(e.target.value);
+  const updatePriority = (e: any) => setPriority(parseInt(e.target.value));
 
   useEffect(() => {
     GetAllTodos().then((todos) => {
@@ -15,10 +23,12 @@ function App() {
   }, []);
 
   function createTodo() {
-    CreateTodo(todo).then((todo) => {
-      setTodos([...todos, todo]);
-      setTodo('');
-    });
+    CreateTodo(text, priority)
+      .then((todo) => {
+        setTodos([todo, ...todos]);
+        setText('');
+      })
+      .catch((e) => console.log(e));
   }
 
   function deleteTodo(id: number) {
@@ -41,8 +51,18 @@ function App() {
           autoComplete="off"
           name="new-todo"
           type="text"
-          value={todo}
+          value={text}
         />
+        <select
+          name="priority"
+          id="priority"
+          value={priority}
+          onChange={updatePriority}
+        >
+          <option value={0}>INFO</option>
+          <option value={1}>LOW</option>
+          <option value={2}>HIGH</option>
+        </select>
         <button className="btn" onClick={createTodo}>
           Add
         </button>
@@ -63,12 +83,12 @@ type TodoProps = {
 };
 
 function Todo(props: TodoProps) {
-  const priClass = props.value.Priority === 1 ? 'priH' : 'priL';
+  const priClass = PRIORITIES[props.value.Priority].class;
 
   return (
     <div className={`todo-container ${priClass}`}>
       <span>{props.value.Content}</span>
-      <span>{props.value.Priority === 1 ? 'High' : 'Low'}</span>
+      <span>{PRIORITIES[props.value.Priority].text}</span>
       <button className="del-btn" onClick={() => props.Delete(props.value.ID)}>
         X
       </button>

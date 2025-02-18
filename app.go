@@ -49,7 +49,7 @@ func (a *App) Greet(name string) string {
 func (a *App) GetAllTodos() []TodoEntry {
 	var todos []TodoEntry
 
-	result := a.db.Find(&todos)
+	result := a.db.Order("created_At desc").Find(&todos)
 
 	fmt.Println(result.RowsAffected)
 
@@ -57,8 +57,8 @@ func (a *App) GetAllTodos() []TodoEntry {
 }
 
 // Create a new Todo and stores it in database
-func (a *App) CreateTodo(content string) TodoEntry {
-	todo := TodoEntry{Content: content, Priority: 2}
+func (a *App) CreateTodo(content string, priority int) TodoEntry {
+	todo := TodoEntry{Content: content, Priority: priority}
 	
 	a.db.Create(&todo)
 

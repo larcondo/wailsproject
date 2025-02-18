@@ -3,19 +3,6 @@
   text-align: center;
 }
 
-#logo {
-  display: block;
-  /* width: 50%; */
-  /* height: 50%; */
-  max-width: 200px;
-  margin: auto;
-  /* padding: 10% 0 0; */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-origin: content-box;
-}
-
 .result {
   height: 20px;
   line-height: 20px;
@@ -32,7 +19,6 @@
   line-height: 30px;
   border-radius: 3px;
   border: none;
-  margin: 0 0 0 20px;
   padding: 0 8px;
   cursor: pointer;
 }
@@ -47,6 +33,7 @@
   border-radius: 3px;
   outline: none;
   height: 30px;
+  width: 40ch;
   line-height: 30px;
   padding: 0 10px;
   background-color: rgba(240, 240, 240, 1);
@@ -59,6 +46,21 @@
 }
 
 .input-box .input:focus {
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.input-box select {
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  line-height: 30px;
+  margin: 0 30px;
+  background-color: rgba(240, 240, 240, 1);
+}
+.input-box select:hover {
   border: none;
   background-color: rgba(255, 255, 255, 1);
 }
@@ -82,11 +84,14 @@
   align-items: center;
 }
 
-.todo-container.priH {
-  background-color: rgba(0, 0, 0, 0.25);
+.todo-container.pri-high {
+  background-color: darkred;
 }
-.todo-container.priL {
-  background-color: rgba(0, 0, 0, 0.15);
+.todo-container.pri-low {
+  background-color: darkorange;
+}
+.todo-container.pri-info {
+  background-color: darkcyan;
 }
 
 .todo-container span:first-child {
