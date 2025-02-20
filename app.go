@@ -11,13 +11,14 @@ import (
 // App struct
 type App struct {
 	ctx context.Context
-	db *gorm.DB
+	db  *gorm.DB
 }
 
 type TodoEntry struct {
 	gorm.Model
-	Content string
-	Priority int
+	Content   string
+	Priority  int
+	Completed bool
 }
 
 // NewApp creates a new App application struct
@@ -58,10 +59,18 @@ func (a *App) GetAllTodos() []TodoEntry {
 
 // Create a new Todo and stores it in database
 func (a *App) CreateTodo(content string, priority int) TodoEntry {
-	todo := TodoEntry{Content: content, Priority: priority}
-	
+	todo := TodoEntry{Content: content, Priority: priority, Completed: false}
+
 	a.db.Create(&todo)
 
+	return todo
+}
+
+func (a *App) UpdateCompleted(ID uint, completed bool) TodoEntry {
+	var todo TodoEntry
+	a.db.First(&todo, ID)
+	todo.Completed = !completed
+	a.db.Save(&todo)
 	return todo
 }
 

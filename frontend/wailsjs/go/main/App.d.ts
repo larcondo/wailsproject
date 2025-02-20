@@ -9,3 +9,5 @@ export function DeleteTodo(arg1:number):Promise<main.TodoEntry>;
 export function GetAllTodos():Promise<Array<main.TodoEntry>>;
 
 export function Greet(arg1:string):Promise<string>;
+
+export function UpdateCompleted(arg1:number,arg2:boolean):Promise<main.TodoEntry>;

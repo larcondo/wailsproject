@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { CreateTodo, GetAllTodos, DeleteTodo } from '../wailsjs/go/main/App';
+import {
+  CreateTodo,
+  GetAllTodos,
+  DeleteTodo,
+  UpdateCompleted,
+} from '../wailsjs/go/main/App';
 import { main } from '../wailsjs/go/models';
+import TodoList from './componentes/TodoList';
 
-const PRIORITIES = [
+export const PRIORITIES = [
   { class: 'pri-info', text: 'Info' },
   { class: 'pri-low', text: 'Baja' },
   { class: 'pri-high', text: 'Alta' },
@@ -33,8 +39,14 @@ function App() {
 
   function deleteTodo(id: number) {
     DeleteTodo(id).then((todo) => {
-      console.log(todo);
       const newTodos = todos.filter((t) => t.ID !== todo.ID);
+      setTodos(newTodos);
+    });
+  }
+
+  function updateCompleted(id: number, completed: boolean) {
+    UpdateCompleted(id, completed).then((todo) => {
+      const newTodos = todos.map((t) => (t.ID === todo.ID ? todo : t));
       setTodos(newTodos);
     });
   }
@@ -59,39 +71,16 @@ function App() {
           value={priority}
           onChange={updatePriority}
         >
-          <option value={0}>INFO</option>
-          <option value={1}>LOW</option>
-          <option value={2}>HIGH</option>
+          <option value={0}>{PRIORITIES[0].text}</option>
+          <option value={1}>{PRIORITIES[1].text}</option>
+          <option value={2}>{PRIORITIES[2].text}</option>
         </select>
         <button className="btn" onClick={createTodo}>
           Add
         </button>
       </div>
 
-      <div className="todo-list">
-        {todos.map((value) => {
-          return <Todo value={value} Delete={deleteTodo} key={value.ID} />;
-        })}
-      </div>
-    </div>
-  );
-}
-
-type TodoProps = {
-  value: main.TodoEntry;
-  Delete: (id: number) => void;
-};
-
-function Todo(props: TodoProps) {
-  const priClass = PRIORITIES[props.value.Priority].class;
-
-  return (
-    <div className={`todo-container ${priClass}`}>
-      <span>{props.value.Content}</span>
-      <span>{PRIORITIES[props.value.Priority].text}</span>
-      <button className="del-btn" onClick={() => props.Delete(props.value.ID)}>
-        X
-      </button>
+      <TodoList todos={todos} Delete={deleteTodo} Update={updateCompleted} />
     </div>
   );
 }

@@ -17,3 +17,7 @@ export function GetAllTodos() {
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }
+
+export function UpdateCompleted(arg1, arg2) {
+  return window['go']['main']['App']['UpdateCompleted'](arg1, arg2);
+}

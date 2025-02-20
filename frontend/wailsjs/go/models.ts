@@ -10,6 +10,7 @@ export namespace main {
 	    DeletedAt: any;
 	    Content: string;
 	    Priority: number;
+	    Completed: boolean;
 	
 	    static createFrom(source: any = {}) {
 	        return new TodoEntry(source);
@@ -23,6 +24,7 @@ export namespace main {
 	        this.DeletedAt = this.convertValues(source["DeletedAt"], null);
 	        this.Content = source["Content"];
 	        this.Priority = source["Priority"];
+	        this.Completed = source["Completed"];
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {

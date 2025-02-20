@@ -1,0 +1,93 @@
+.toggle-switch {
+  --off-color: hsl(36, 100%, 10%);
+  --on-color: hsl(36, 100%, 50%);
+  --switch-color: #fff;
+  position: relative;
+  width: 65px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.toggle-switch-checkbox {
+  display: none;
+}
+
+.toggle-switch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0 solid var(--off-color);
+  border-radius: 20px;
+  margin: 0;
+}
+
+.toggle-switch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.2s ease-in 0s;
+}
+
+.toggle-switch-inner:before,
+.toggle-switch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 34px;
+  padding: 0;
+  line-height: 34px;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.toggle-switch-inner:before {
+  content: '';
+  text-transform: uppercase;
+  padding-left: 10px;
+  background-color: var(--on-color);
+  color: #fff;
+}
+
+.toggle-switch-disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+.toggle-switch-disabled:before {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.toggle-switch-inner:after {
+  content: '';
+  text-transform: uppercase;
+  padding-right: 10px;
+  background-color: var(--off-color);
+  color: red;
+  text-align: right;
+}
+
+.toggle-switch-switch {
+  display: block;
+  width: 24px;
+  margin: 5px;
+  background: var(--switch-color);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 30px;
+  border: 0 solid var(--off-color);
+  border-radius: 20px;
+  transition: all 0.2s ease-in 0s;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label {
+  .toggle-switch-inner {
+    margin-left: 0;
+  }
+  .toggle-switch-switch {
+    right: 0px;
+  }
+}

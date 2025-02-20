@@ -1,0 +1,47 @@
+.todo-container {
+  --color-high: hsl(180, 100%, 27%);
+  --color-low: hsl(180, 100%, 22%);
+  --color-info: hsl(180, 100%, 15%);
+  border-radius: 4px;
+  padding: 1ch 2ch;
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.todo-container.pri-high {
+  background-color: var(--color-high);
+}
+.todo-container.pri-low {
+  background-color: var(--color-low);
+}
+.todo-container.pri-info {
+  background-color: var(--color-info);
+}
+
+.todo-container .todo-text {
+  /* background-color: blue; */
+  flex: 1;
+}
+
+.todo-container .todo-priority {
+  /* background-color: orange; */
+  padding: 0 1rem;
+  font-size: smaller;
+}
+
+.del-btn {
+  background-color: rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  aspect-ratio: 1 / 1;
+  color: #aaa;
+  cursor: pointer;
+}
+.del-btn:hover {
+  color: #eee;
+  background-color: rgba(0, 0, 0, 0.25);
+}
