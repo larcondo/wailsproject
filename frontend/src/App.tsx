@@ -10,16 +10,24 @@ import {
 import TodoList from './componentes/TodoList';
 import PrioritySection from './componentes/PrioritySection';
 import TodoInput from './componentes/TodoInput';
-
-function filterTodosByPri(todos: TodoArray, pri: number) {
-  return todos.filter((t) => t.Priority === pri);
-}
+import { filterTodos, filterTodosByPri } from './utils/filters';
+import CheckBoxGroup from './componentes/CheckBoxGroup';
 
 function App() {
   const [todos, setTodos] = useState<TodoArray>([]);
+  const [filtros, setFiltros] = useState<PriFilter>({
+    info: true,
+    low: true,
+    high: true,
+  });
   const infoTodos = useMemo(() => filterTodosByPri(todos, 0), [todos]);
   const lowTodos = useMemo(() => filterTodosByPri(todos, 1), [todos]);
   const highTodos = useMemo(() => filterTodosByPri(todos, 2), [todos]);
+
+  const filteredTodos = useMemo(
+    () => filterTodos(todos, filtros),
+    [todos, filtros]
+  );
 
   useEffect(() => {
     GetAllTodos().then((todos) => {
@@ -61,8 +69,9 @@ function App() {
         />
         <div className="todo-section">
           <TodoInput createTodo={createTodo} />
+          <CheckBoxGroup setFiltros={setFiltros} />
           <TodoList
-            todos={todos}
+            todos={filteredTodos}
             Delete={deleteTodo}
             Update={updateCompleted}
           />
