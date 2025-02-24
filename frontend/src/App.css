@@ -3,68 +3,6 @@
   text-align: center;
 }
 
-.result {
-  height: 20px;
-  line-height: 20px;
-  margin: 1.5rem auto;
-}
-
-.input-box {
-  margin: 1rem 0;
-}
-
-.input-box .btn {
-  width: 60px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-  border: none;
-  padding: 0 8px;
-  cursor: pointer;
-}
-
-.input-box .btn:hover {
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-  color: #333333;
-}
-
-.input-box .input {
-  border: none;
-  border-radius: 3px;
-  outline: none;
-  height: 30px;
-  width: 40ch;
-  line-height: 30px;
-  padding: 0 10px;
-  background-color: rgba(240, 240, 240, 1);
-  -webkit-font-smoothing: antialiased;
-}
-
-.input-box .input:hover {
-  border: none;
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.input-box .input:focus {
-  border: none;
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.input-box select {
-  border: none;
-  border-radius: 3px;
-  outline: none;
-  height: 30px;
-  padding: 0 10px;
-  line-height: 30px;
-  margin: 0 30px;
-  background-color: rgba(240, 240, 240, 1);
-}
-.input-box select:hover {
-  border: none;
-  background-color: rgba(255, 255, 255, 1);
-}
-
 .layout {
   max-width: 1000px;
   margin: 0 auto;
@@ -72,32 +10,7 @@
   grid-template-columns: 200px auto;
 }
 
-.priority-section {
-  padding-top: 3rem;
-}
-
-.priority-row {
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 1ch;
-  margin: 1rem 0;
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-}
-
-.priority-text {
-  text-align: center;
-  flex: 1;
-}
-
-.qty-number {
-  font-size: 14px;
-  font-weight: 500;
-  background-color: rgba(255, 255, 255, 0.2);
-  width: 30px;
-  line-height: 30px;
-  border-radius: 50%;
+.todo-section {
+  /* background-color: red; */
+  margin: 0 1rem;
 }

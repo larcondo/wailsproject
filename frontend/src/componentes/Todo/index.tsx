@@ -1,7 +1,7 @@
 import './index.css';
 import { main } from '../../../wailsjs/go/models';
-import { PRIORITIES } from '../../App';
 import Switch from '../Switch';
+import { PRIORITIES } from '../../utils/constants';
 
 type TodoProps = {
   value: main.TodoEntry;
