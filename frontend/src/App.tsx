@@ -11,7 +11,6 @@ import TodoList from './componentes/TodoList';
 import PrioritySection from './componentes/PrioritySection';
 import TodoInput from './componentes/TodoInput';
 import { filterTodos, filterTodosByPri } from './utils/filters';
-import CheckBoxGroup from './componentes/CheckBoxGroup';
 
 function App() {
   const [todos, setTodos] = useState<TodoArray>([]);
@@ -66,10 +65,10 @@ function App() {
           highQty={highTodos.length}
           lowQty={lowTodos.length}
           infoQty={infoTodos.length}
+          setFiltros={setFiltros}
         />
         <div className="todo-section">
           <TodoInput createTodo={createTodo} />
-          <CheckBoxGroup setFiltros={setFiltros} />
           <TodoList
             todos={filteredTodos}
             Delete={deleteTodo}
