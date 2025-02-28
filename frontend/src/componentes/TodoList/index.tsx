@@ -23,7 +23,15 @@ export default function TodoList({ todos, Update, Delete }: TodoListProps) {
   return (
     <div className="todo-list">
       {todos.map((t) => {
-        return <Todo value={t} key={t.ID} Delete={Delete} Update={Update} />;
+        return (
+          <Todo
+            value={t}
+            key={t.ID}
+            Delete={Delete}
+            Update={Update}
+            type="check"
+          />
+        );
       })}
     </div>
   );
