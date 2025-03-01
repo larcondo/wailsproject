@@ -1,6 +1,7 @@
 .priority-section {
   padding-top: 3rem;
-  margin: 0 1rem;
+  grid-column: 1/2;
+  grid-row: 2/3;
 }
 
 .priority-row {

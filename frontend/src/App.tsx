@@ -11,9 +11,11 @@ import TodoList from './componentes/TodoList';
 import PrioritySection from './componentes/PrioritySection';
 import TodoInput from './componentes/TodoInput';
 import { filterTodos, filterTodosByPri } from './utils/filters';
+import DeletedList from './componentes/DeletedList';
 
 function App() {
   const [todos, setTodos] = useState<TodoArray>([]);
+  const [showing, setShowing] = useState<string>('todos');
   const [filtros, setFiltros] = useState<PriFilter>({
     info: true,
     low: true,
@@ -61,21 +63,50 @@ function App() {
       <h1>To-do List</h1>
 
       <div className="layout">
+        <Header currentPage={showing} setCurrentPage={setShowing} />
+
         <PrioritySection
           highQty={highTodos.length}
           lowQty={lowTodos.length}
           infoQty={infoTodos.length}
+          filtros={filtros}
           setFiltros={setFiltros}
         />
+
         <div className="todo-section">
           <TodoInput createTodo={createTodo} />
-          <TodoList
-            todos={filteredTodos}
-            Delete={deleteTodo}
-            Update={updateCompleted}
-          />
+          {showing === 'todos' && (
+            <TodoList
+              todos={filteredTodos}
+              Delete={deleteTodo}
+              Update={updateCompleted}
+            />
+          )}
+          {showing === 'deleted' && <DeletedList />}
         </div>
       </div>
+    </div>
+  );
+}
+
+type HeaderProps = {
+  currentPage: string;
+  setCurrentPage: (value: React.SetStateAction<string>) => void;
+};
+
+function Header({ currentPage, setCurrentPage }: HeaderProps) {
+  return (
+    <div className="header">
+      {currentPage !== 'todos' && (
+        <button onClick={() => setCurrentPage('todos')} className="boton">
+          ← Todos
+        </button>
+      )}
+      {currentPage !== 'deleted' && (
+        <button onClick={() => setCurrentPage('deleted')} className="boton">
+          Eliminados
+        </button>
+      )}
     </div>
   );
 }

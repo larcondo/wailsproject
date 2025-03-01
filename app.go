@@ -57,6 +57,14 @@ func (a *App) GetAllTodos() []TodoEntry {
 	return todos
 }
 
+func (a *App) GetDeleted() []TodoEntry {
+	var todos []TodoEntry
+
+	a.db.Unscoped().Where("deleted_at IS NOT NULL").Order("deleted_at desc").Find(&todos)
+
+	return todos
+}
+
 // Create a new Todo and stores it in database
 func (a *App) CreateTodo(content string, priority int) TodoEntry {
 	todo := TodoEntry{Content: content, Priority: priority, Completed: false}
@@ -79,4 +87,11 @@ func (a *App) DeleteTodo(ID uint) TodoEntry {
 	a.db.First(&todo, ID)
 	a.db.Delete(&todo)
 	return todo
+}
+
+func (a *App) DeletePermanently(ids []uint) ([]uint, error) {
+
+	result := a.db.Unscoped().Delete(&TodoEntry{}, ids)
+
+	return ids, result.Error
 }

@@ -6,12 +6,20 @@ export function CreateTodo(arg1, arg2) {
   return window['go']['main']['App']['CreateTodo'](arg1, arg2);
 }
 
+export function DeletePermanently(arg1) {
+  return window['go']['main']['App']['DeletePermanently'](arg1);
+}
+
 export function DeleteTodo(arg1) {
   return window['go']['main']['App']['DeleteTodo'](arg1);
 }
 
 export function GetAllTodos() {
   return window['go']['main']['App']['GetAllTodos']();
+}
+
+export function GetDeleted() {
+  return window['go']['main']['App']['GetDeleted']();
 }
 
 export function Greet(arg1) {

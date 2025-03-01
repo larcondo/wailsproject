@@ -3,10 +3,16 @@ import './index.css';
 type CheckBoxProps = {
   name: string;
   label: string;
+  checked?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function CheckBox({ name, label, onChange }: CheckBoxProps) {
+export default function CheckBox({
+  name,
+  label,
+  checked,
+  onChange,
+}: CheckBoxProps) {
   return (
     <div className="checkbox">
       <input
@@ -14,7 +20,7 @@ export default function CheckBox({ name, label, onChange }: CheckBoxProps) {
         name={`check-${name}`}
         id={`check-${name}`}
         onChange={onChange}
-        defaultChecked
+        checked={checked}
       />
       <svg>
         <use xlinkHref="#checkmark-28" />

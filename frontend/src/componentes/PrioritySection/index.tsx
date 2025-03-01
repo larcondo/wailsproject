@@ -5,6 +5,7 @@ type PrioritySectionProps = {
   highQty: number;
   lowQty: number;
   infoQty: number;
+  filtros: PriFilter;
   setFiltros: (value: React.SetStateAction<PriFilter>) => void;
 };
 
@@ -12,6 +13,7 @@ export default function PrioritySection({
   highQty,
   lowQty,
   infoQty,
+  filtros,
   setFiltros,
 }: PrioritySectionProps) {
   return (
@@ -20,6 +22,7 @@ export default function PrioritySection({
         <CheckBox
           name="high"
           label="Alta"
+          checked={filtros.high}
           onChange={(e) =>
             setFiltros((prev) => ({ ...prev, high: e.target.checked }))
           }
@@ -30,6 +33,7 @@ export default function PrioritySection({
         <CheckBox
           name="low"
           label="Baja"
+          checked={filtros.low}
           onChange={(e) =>
             setFiltros((prev) => ({ ...prev, low: e.target.checked }))
           }
@@ -40,6 +44,7 @@ export default function PrioritySection({
         <CheckBox
           name="info"
           label="Info"
+          checked={filtros.info}
           onChange={(e) =>
             setFiltros((prev) => ({ ...prev, info: e.target.checked }))
           }
